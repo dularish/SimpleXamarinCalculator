@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Calculator"
+             x:Class="Calculator.MainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+        <local:BooleanToGridLengthConverter x:Key="boolToGridConv" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid>
+        <!-- Place new controls here -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="0.25*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="{Binding DisplayScientificPart, Converter={StaticResource boolToGridConv}, ConverterParameter=1}"  />
+            <ColumnDefinition Width="{Binding DisplayScientificPart, Converter={StaticResource boolToGridConv}, ConverterParameter=1}"  />
+        </Grid.ColumnDefinitions>
+        <AbsoluteLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="7" HorizontalOptions="Center">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Scientific" />
+                <Switch x:Name="_scientificSwitch"  IsToggled="{Binding DisplayScientificPart, Mode=TwoWay}" />
+            </StackLayout>
+        </AbsoluteLayout>
+        <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" x:Name="_mainLabel" Text="" 
+           HorizontalOptions="Center" >
+            <Label.FontFamily>
+                <OnPlatform x:TypeArguments="x:String">
+                    <On Platform="Android" Value="VeraMono.ttf#VeraMono.ttf" />
+                </OnPlatform>
+            </Label.FontFamily>
+        </Label>
+        <Button x:Name="BackspaceBtn" Text="Bspace" Command="{Binding BackspaceCommand}" Grid.Row="2" Grid.RowSpan="1" Grid.Column="0" />
+        <Button x:Name="ClearAllBtn" Text="Clear" Command="{Binding ClearAllCommand}" Grid.Row="2" Grid.RowSpan="1" Grid.Column="1" />
+        <Button x:Name="OpenParansBtn" Text="(" Command="{Binding StreamAppendCommand}" CommandParameter="(" Grid.Row="2" Grid.Column="2" />
+        <Button x:Name="CloseParansBtn" Text=")" Command="{Binding StreamAppendCommand}" CommandParameter=")" Grid.Row="2" Grid.Column="3" />
+        <Button x:Name="BackBtn" Text="back" Command="{Binding BackCommand}" Grid.Row="2" Grid.Column="4" />
+        <Button x:Name="SinBtn" Text="sin" Command="{Binding StreamAppendCommand}" CommandParameter="sin" Grid.Row="2" Grid.Column="5" />
+        <Button x:Name="CosBtn" Text="cos" Command="{Binding StreamAppendCommand}" CommandParameter="cos" Grid.Row="2" Grid.Column="6" />
+
+        <Button x:Name="SevenBtn" Text="7" Command="{Binding StreamAppendCommand}" CommandParameter="7" Grid.Row="3" Grid.Column="0" />
+        <Button x:Name="EightBtn" Text="8" Command="{Binding StreamAppendCommand}" CommandParameter="8" Grid.Row="3" Grid.Column="1" />
+        <Button x:Name="NineBtn" Text="9" Command="{Binding StreamAppendCommand}" CommandParameter="9" Grid.Row="3" Grid.Column="2" />
+
+        <Button x:Name="DivideBtn" Text="/" Command="{Binding StreamAppendCommand}" CommandParameter="/" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="1"/>
+        <Button x:Name="SqrtBtn" Text="sqrt" Command="{Binding StreamAppendCommand}" CommandParameter="sqrt" Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="1"/>
+        <Button x:Name="TanBtn" Text="tan" Command="{Binding StreamAppendCommand}" CommandParameter="tan" Grid.Row="3" Grid.Column="5" />
+        <Button x:Name="ExpBtn" Text="exp" Command="{Binding StreamAppendCommand}" CommandParameter="exp" Grid.Row="3" Grid.Column="6" />
+
+        <Button x:Name="FourBtn" Text="4" Command="{Binding StreamAppendCommand}" CommandParameter="4" Grid.Row="4" Grid.Column="0"/>
+        <Button x:Name="FiveBtn" Text="5" Command="{Binding StreamAppendCommand}" CommandParameter="5" Grid.Row="4" Grid.Column="1"/>
+        <Button x:Name="SixBtn" Text="6" Command="{Binding StreamAppendCommand}" CommandParameter="6" Grid.Row="4" Grid.Column="2"/>
+
+        <Button x:Name="MultiplyBtn" Text="*" Command="{Binding StreamAppendCommand}" CommandParameter="*" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="1"/>
+        <Button x:Name="ModuloBtn" Text="%" Command="{Binding StreamAppendCommand}" CommandParameter="%" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="1"/>
+
+        <Button x:Name="LogBtn" Text="log" Command="{Binding StreamAppendCommand}" CommandParameter="log" Grid.Row="4" Grid.Column="5" />
+        <Button x:Name="LnBtn" Text="ln" Command="{Binding StreamAppendCommand}" CommandParameter="ln" Grid.Row="4" Grid.Column="6" />
+
+
+        <Button x:Name="OneBtn" Text="1" Command="{Binding StreamAppendCommand}" CommandParameter="1" Grid.Row="5" Grid.Column="0"/>
+        <Button x:Name="TwoBtn" Text="2" Command="{Binding StreamAppendCommand}" CommandParameter="2" Grid.Row="5" Grid.Column="1"/>
+        <Button x:Name="ThreeBtn" Text="3" Command="{Binding StreamAppendCommand}" CommandParameter="3" Grid.Row="5" Grid.Column="2"/>
+
+        <Button x:Name="MinusBtn" Text="-" Command="{Binding StreamAppendCommand}" CommandParameter="-" Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="1" />
+
+        <Button x:Name="PiBtn" Text="pi" Command="{Binding StreamAppendCommand}" CommandParameter="pi" Grid.Row="5" Grid.Column="5" />
+        <Button x:Name="SinhBtn" Text="sinh" Command="{Binding StreamAppendCommand}" CommandParameter="sinh" Grid.Row="5" Grid.Column="6" />
+
+
+
+        <Button x:Name="ZeroBtn" Text="0" Command="{Binding StreamAppendCommand}" CommandParameter="0" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"/>
+        <Button x:Name="DotBtn" Text="." Command="{Binding StreamAppendCommand}" CommandParameter="." Grid.Row="6" Grid.Column="2"/>
+
+        <Button x:Name="PlusBtn" Text="+" Command="{Binding StreamAppendCommand}" CommandParameter="+" Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="1" />
+
+        <Button x:Name="CoshBtn" Text="cosh" Command="{Binding StreamAppendCommand}" CommandParameter="cosh" Grid.Row="6" Grid.Column="5" />
+        <Button x:Name="TanhBtn" Text="tanh" Command="{Binding StreamAppendCommand}" CommandParameter="tanh" Grid.Row="6" Grid.Column="6" />
+
+
+        <Button x:Name="EqualsBtn" Text="=" Command="{Binding EvaluateCommand}" Grid.Row="5" Grid.RowSpan="2" Grid.Column="4" Grid.ColumnSpan="1" />
+        
+
+    </Grid>
+
+</ContentPage>
